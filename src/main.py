@@ -30,7 +30,7 @@ def draw_pose(image, landmarks):
 		)
 
 	# Map constant landmark connections
-	connect_components = [
+	adj_list = [
 		# Upper Face
 		[1, 4],
 		[0, 2],
@@ -70,14 +70,14 @@ def draw_pose(image, landmarks):
 		[27, 29],
 		[28, 30]
 	]
-	NODE_AMOUNT: int = len(connect_components)
+	NODE_AMOUNT: int = len(adj_list)
 
 	def dfs(node_num: int, visited: list[bool]):
 		visited[node_num] = True
 
 		x_start = int(landmarks.landmark[node_num].x * width)
 		y_start = int(landmarks.landmark[node_num].y * height)
-		for next_node in connect_components[node_num]:
+		for next_node in adj_list[node_num]:
 			x_end = int(landmarks.landmark[next_node].x * width)
 			y_end = int(landmarks.landmark[next_node].y * height)
 
