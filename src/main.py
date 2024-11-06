@@ -30,7 +30,7 @@ def draw_pose(image, landmarks):
 		)
 
 	# Map constant landmark connections
-	connect_components = [
+	adj_list = [
 		# Upper Face
 		[1, 4],
 		[0, 2],
@@ -70,14 +70,14 @@ def draw_pose(image, landmarks):
 		[27, 29],
 		[28, 30]
 	]
-	NODE_AMOUNT: int = len(connect_components)
+	NODE_AMOUNT: int = len(adj_list)
 
 	def dfs(node_num: int, visited: list[bool]):
 		visited[node_num] = True
 
 		x_start = int(landmarks.landmark[node_num].x * width)
 		y_start = int(landmarks.landmark[node_num].y * height)
-		for next_node in connect_components[node_num]:
+		for next_node in adj_list[node_num]:
 			x_end = int(landmarks.landmark[next_node].x * width)
 			y_end = int(landmarks.landmark[next_node].y * height)
 
@@ -123,7 +123,7 @@ def draw_pose(image, landmarks):
 
 def main():
 	''' 
-	TODO Task 2
+	TODO Task 2 COMPLETED
 		modify this fucntion to take a photo uses the pi camera instead 
 		of loading an image
 
@@ -139,8 +139,10 @@ def main():
 			min_detection_confidence=0.5,
 			min_tracking_confidence=0.5) as pose:
 
-		# load test image
-		image = cv2.imread("person.png")	
+		# Campture image from camera
+		ret, image = camera.read()
+		if not ret:
+			raise Exception("Could not read image from camera")
 
 		# To improve performance, optionally mark the image as not 
 		# writeable to pass by reference.
