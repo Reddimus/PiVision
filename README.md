@@ -2,7 +2,11 @@
 
 ## Description
 
-This project involves using MediaPipe and OpenCV to detect human poses in an image and draw the pose landmarks. In **Task 1**, we modified the [`draw_pose`](src/main.py) function in [`main.py`](src/main.py) to draw pose landmarks on an input image and generate an output image with the landmarks overlaid.
+This project involves using MediaPipe and OpenCV to detect human poses in an image and draw the pose landmarks. In **Task 1**, we modified the [`draw_pose`](src/main.py) function in [`main.py`](src/main.py) to draw pose landmarks on an input image and generate an output image with the landmarks overlaid. In **Task 2**, we modified the `main()` function in [`main.py`](src/main.py) to capture an image using the Pi camera instead of loading an image from disk.
+
+## Task 3 Goal
+
+For **Task 3**, the goal is to modify the [`main`](src/main.py) function to loop and display a video feed with real-time pose estimation.
 
 ## Objectives
 
@@ -62,21 +66,17 @@ This project involves using MediaPipe and OpenCV to detect human poses in an ima
 
 ## Usage
 
-1. Place the input image:
+1. **Pose yourself or someone else in front of the camera**.
 
-    Ensure that you have an image named `person.png` in the `src` or root directory. This image will be used as the input for pose detection.
+2. **Run the script**:
 
-2. Run the `main.py` script:
-
-    Run the following command to execute the `main.py` script:
+    To run the script, use the following command:
 
     ```bash
     python main.py
     ```
 
-3. View the output image:
-
-    The script will process the image, detect pose landmarks and generate an output image with the landmarks overlaid. The output image will be saved as `output.png` in the same directory.
+    The script will capture the video feed from the Pi camera and display the real-time pose estimation.
 
 ## Task 1: Drawing Pose Landmarks on Image
 
@@ -84,6 +84,10 @@ In **Task 1**, we modified the `draw_pose`  function to draw the detected pose l
 
 - Draw circles at each landmark point.
 - Draw lines connecting the landmarks to visualize the pose.
+
+## Task 2: Capturing Image from Pi Camera
+
+In **Task 2**, we modified the `main()` function in [`main.py`](src/main.py) to capture an image using the Pi camera instead of loading an image from disk.
 
 ## Example Output
 
