@@ -2,11 +2,11 @@
 
 ## Description
 
-This project involves using MediaPipe and OpenCV to detect human poses in an image and draw the pose landmarks. In **Task 1**, we modified the [`draw_pose`](src/main.py) function in [`main.py`](src/main.py) to draw pose landmarks on an input image and generate an output image with the landmarks overlaid. In **Task 2**, we modified the `main()` function in [`main.py`](src/main.py) to capture an image using the Pi camera instead of loading an image from disk.
+This project involves using MediaPipe and OpenCV to detect human poses in an image and draw the pose landmarks. 
 
-## Task 3 Goal
-
-For **Task 3**, the goal is to modify the [`main`](src/main.py) function to loop and display a video feed with real-time pose estimation.
+- In **Task 1**, we modified the [`draw_pose`](src/main.py) function in [`main.py`](src/main.py) to draw pose landmarks on an input image and generate an output image with the landmarks overlaid. 
+- In **Task 2**, we modified the `main()` function in [`main.py`](src/main.py) to capture an image using the Pi camera instead of loading an image from disk.
+- In **Task 3**, we enhanced the `main()` function to loop and display a video feed with real-time pose estimation.
 
 ## Objectives
 
@@ -89,6 +89,15 @@ In **Task 1**, we modified the `draw_pose`  function to draw the detected pose l
 
 In **Task 2**, we modified the `main()` function in [`main.py`](src/main.py) to capture an image using the Pi camera instead of loading an image from disk.
 
+## Task 3: Real-Time Video Pose Estimation
+
+In **Task 3**, we enhanced the `main()` function to:
+
+- Continuously capture frames from the Pi camera.
+- Process each frame using the MediaPipe pose estimation model.
+- Draw the pose landmarks on the frame.
+- Display the live video feedwith the overlaid pose landmarks using OpenCV.
+
 ## Example Output
 
-![output.png](output.png)
+![output.gif](output.gif)
