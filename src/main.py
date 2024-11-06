@@ -122,15 +122,6 @@ def draw_pose(image, landmarks):
 	return landmark_image
 
 def main():
-	''' 
-	TODO Task 2 COMPLETED
-		modify this fucntion to take a photo uses the pi camera instead 
-		of loading an image
-
-	TODO Task 3
-		modify this function further to loop and show a video
-	'''
-
 	# Create a pose estimation model 
 	mp_pose = mp.solutions.pose
 	
@@ -139,25 +130,38 @@ def main():
 			min_detection_confidence=0.5,
 			min_tracking_confidence=0.5) as pose:
 
-		# Campture image from camera
-		ret, image = camera.read()
-		if not ret:
-			raise Exception("Could not read image from camera")
+		while True:
+			# Capture image from camera
+			ret, image = camera.read()
+			if not ret:
+				raise Exception("Could not read image from camera")
 
-		# To improve performance, optionally mark the image as not 
-		# writeable to pass by reference.
-		image.flags.writeable = False
-		
-		# get the landmarks
-		results = pose.process(image)
-		
-		if results.pose_landmarks != None:
-			result_image = draw_pose(image, results.pose_landmarks)
-			cv2.imwrite('output.png', result_image)
-			print(results.pose_landmarks)
-		else:
-			print('No Pose Detected')
+			# To improve performance, optionally mark the image as not 
+			# writeable to pass by reference.
+			image.flags.writeable = False
+			
+			# get the landmarks
+			results = pose.process(image)
+			
+			image.flags.writeable = True
+			
+			if results.pose_landmarks:
+				result_image = draw_pose(image, results.pose_landmarks)
+				print("Pose Detected")
+			else:
+				print("No Pose Detected")
+
+			# Display the frame
+			cv2.imshow("Pose Detection", result_image)
+
+			# Break the loop when 'q' is pressed
+			if cv2.waitKey(1) & 0xFF == ord('q'):
+				break
+
+	# Release the camera and close the window
+	camera.release()
+	cv2.destroyAllWindows()
 
 if __name__ == "__main__":
 	main()
-	print('done')
+	print("done")
