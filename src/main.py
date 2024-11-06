@@ -123,7 +123,7 @@ def draw_pose(image, landmarks):
 
 def main():
 	''' 
-	TODO Task 2
+	TODO Task 2 COMPLETED
 		modify this fucntion to take a photo uses the pi camera instead 
 		of loading an image
 
@@ -139,8 +139,10 @@ def main():
 			min_detection_confidence=0.5,
 			min_tracking_confidence=0.5) as pose:
 
-		# load test image
-		image = cv2.imread("person.png")	
+		# Campture image from camera
+		ret, image = camera.read()
+		if not ret:
+			raise Exception("Could not read image from camera")
 
 		# To improve performance, optionally mark the image as not 
 		# writeable to pass by reference.
